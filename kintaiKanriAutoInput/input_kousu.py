@@ -70,6 +70,8 @@ def create_Operationtime_tabel(driver, actionChains):
 
     for x, index in enumerate(df_yesterday.index):
         for y, column in enumerate(df_yesterday.iloc[x, 4:]):
+            if column == 0:
+                continue
             css = f'#divTblProductCostInfo > div > div > div > div > table > tbody > tr:nth-child({1+y}) > td:nth-child({14+x})'
             ele = driver.find_element(By.CSS_SELECTOR, css)
             actionChains.click(ele).perform()
@@ -97,7 +99,7 @@ def yes_or_no_input(driver):
 
 ##### main #####
 
-def main():
+def input_kousu():
     
     driver, actionChains = start_google_chrome_with_port(CLOUD_GATE_URL)
     
@@ -121,4 +123,4 @@ def main():
 
 if __name__ == '__main__':
     
-    main()
+    input_kousu()
